@@ -5,7 +5,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import type { ChatProfileImage } from "@/model/Chat";
-import { BanIcon, EllipsisVerticalIcon } from "lucide-react";
+import { ArchiveIcon, BanIcon, EllipsisVerticalIcon } from "lucide-react";
 
 interface ChatInfoHeaderProps {
   profileImage?: ChatProfileImage;
@@ -48,6 +48,10 @@ export default function ChatInfoHeader({
             <span className="sr-only">More</span>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
+            <DropdownMenuItem className="text-base">
+              <ArchiveIcon className="size-5" />
+              Archive
+            </DropdownMenuItem>
             <DropdownMenuItem variant="destructive" className="text-base">
               <BanIcon className="size-5" />
               Block
