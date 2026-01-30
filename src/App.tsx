@@ -1,5 +1,7 @@
+import ChatPage from "./pages/chat";
+
 function App() {
-  return <div>Hello World</div>;
+  return <ChatPage />;
 }
 
 export default App;
