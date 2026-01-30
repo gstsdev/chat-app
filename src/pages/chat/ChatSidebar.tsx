@@ -5,7 +5,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import type { Chat } from "@/model/Chat";
-import { EllipsisVerticalIcon, LogOutIcon, SettingsIcon } from "lucide-react";
+import {
+  EllipsisVerticalIcon,
+  LogOutIcon,
+  PlusIcon,
+  SettingsIcon,
+} from "lucide-react";
 
 interface ChatSidebarProps {
   chats: Chat[];
@@ -38,9 +43,9 @@ export default function ChatSidebar({ chats, onChatSelect }: ChatSidebarProps) {
           </DropdownMenu>
         </div>
       </div>
-      <div className="bg-white w-full flex-1 rounded-lg shadow-md overflow-hidden">
-        <nav>
-          <ul>
+      <div className="bg-white flex flex-col w-full flex-1 rounded-lg shadow-md overflow-hidden">
+        <nav className="flex flex-col flex-1 min-h-0">
+          <ul className="flex-1 overflow-auto min-h-0">
             {chats.map((chat) => (
               <li key={chat.id}>
                 <a
@@ -74,6 +79,10 @@ export default function ChatSidebar({ chats, onChatSelect }: ChatSidebarProps) {
               </li>
             ))}
           </ul>
+          <button className="flex items-center justify-center gap-2 cursor-pointer p-4 border-t border-gray-200 text-gray-500">
+            <PlusIcon className="size-5" />
+            Start new chat
+          </button>
         </nav>
       </div>
     </div>
