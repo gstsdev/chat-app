@@ -56,3 +56,19 @@ The app will be available at `http://localhost:5173`.
 | `npm run build` | Build for production |
 | `npm run preview` | Preview production build |
 | `npm run lint` | Run ESLint |
+
+## TODO
+
+- [ ] Front-end
+  - [ ] Sidebar
+    - [x] Profile info
+    - [x] Chat history
+    - [x] "Start new chat" button
+  - [ ] Chat View
+    - [ ] Chat info
+    - [ ] Chat message history
+      - [ ] Display messages
+    - [x] Message form
+  - [ ] Login/Sign-up
+  - [ ] Settings
+- [ ] Back-end
