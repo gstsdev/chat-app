@@ -24,10 +24,10 @@ export default function ChatPage() {
         >
           <ChatSidebar />
         </aside>
-        <main className="flex flex-col size-full gap-2">
+        <main className="flex flex-col size-full">
           <button
             className={cn(
-              "w-fit p-2",
+              "w-fit p-2 mb-2",
               "text-gray-400 hover:bg-black/5",
               sidebarActive && "text-black bg-black/10 hover:bg-black/15",
               "rounded-full",
@@ -38,16 +38,25 @@ export default function ChatPage() {
           >
             <PanelLeftDashedIcon className="size-6" />
           </button>
-          <div className="w-full flex mb-2">
-            <ChatInfoHeader />
-          </div>
-          <div className="flex-1">
-            <ChatMessageHistory />
-          </div>
-          <div className="flex-auto max-h-fit">
-            <MessageForm />
-          </div>
+
+          <ChatView />
         </main>
+      </div>
+    </div>
+  );
+}
+
+function ChatView() {
+  return (
+    <div className="flex-1 flex flex-col gap-2">
+      <div className="w-full flex mb-2">
+        <ChatInfoHeader />
+      </div>
+      <div className="flex-1">
+        <ChatMessageHistory />
+      </div>
+      <div className="flex-auto max-h-fit">
+        <MessageForm />
       </div>
     </div>
   );
