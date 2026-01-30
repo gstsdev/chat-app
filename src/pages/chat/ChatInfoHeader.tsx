@@ -6,12 +6,16 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { BanIcon, EllipsisVerticalIcon } from "lucide-react";
 
-export default function ChatInfoHeader() {
+interface ChatInfoHeaderProps {
+  chatName: string;
+}
+
+export default function ChatInfoHeader({ chatName }: ChatInfoHeaderProps) {
   return (
     <div className="flex items-center gap-4 p-2 w-full">
       <div className="bg-linear-to-tr from-yellow-200 to-lime-500 rounded-full size-10"></div>
       <div>
-        <h1 className="font-semibold text-md">John Doe</h1>
+        <h1 className="font-semibold text-md">{chatName}</h1>
         <p className="text-xs text-gray-500">Online</p>
       </div>
       <div className="ml-auto">

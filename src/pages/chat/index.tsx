@@ -3,19 +3,47 @@ import ChatInfoHeader from "./ChatInfoHeader";
 import ChatMessageHistory from "./ChatMessageHistory";
 import ChatSidebar from "./ChatSidebar";
 import MessageForm from "./MessageForm";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { cn } from "@/lib/utils";
+import type { Chat } from "@/model/Chat";
+
+const chats: Chat[] = [
+  {
+    id: "1",
+    name: "Chat with Alice",
+    messages: [
+      { id: "m1", sender: "Alice", content: "Hi there!" },
+      { id: "m2", sender: "You", content: "Hello, Alice!" },
+    ],
+  },
+  {
+    id: "2",
+    name: "Project Discussion",
+    messages: [
+      { id: "m1", sender: "Bob", content: "Did you finish the report?" },
+      { id: "m2", sender: "You", content: "Yes, I sent it this morning." },
+    ],
+  },
+  {
+    id: "3",
+    name: "Random Talk",
+    messages: [
+      { id: "m1", sender: "Charlie", content: "What's up?" },
+      { id: "m2", sender: "You", content: "Not much, just chilling." },
+    ],
+  },
+];
 
 export default function ChatPage() {
   const [sidebarActive, setSidebarActive] = useState(false);
 
   const [activeChatId, setActiveChatId] = useState<string | null>(null);
 
-  const chats = [
-    { id: "1", name: "Chat with Alice" },
-    { id: "2", name: "Project Discussion" },
-    { id: "3", name: "Random Talk" },
-  ];
+  const activeChat = useMemo<Chat | null>(() => {
+    return (
+      (activeChatId && chats.find((chat) => chat.id === activeChatId)) || null
+    );
+  }, [activeChatId]);
 
   return (
     <div className="flex flex-col size-full bg-[#fafaff]">
@@ -50,8 +78,8 @@ export default function ChatPage() {
             <PanelLeftDashedIcon className="size-6" />
           </button>
 
-          {activeChatId ? (
-            <ChatView />
+          {activeChat ? (
+            <ChatView chat={activeChat} />
           ) : (
             <div className="flex-1 grid items-center">
               <p className="text-center text-gray-500">
@@ -65,14 +93,14 @@ export default function ChatPage() {
   );
 }
 
-function ChatView() {
+function ChatView({ chat }: { chat: Chat }) {
   return (
     <div className="flex-1 flex flex-col gap-2">
       <div className="w-full flex mb-2">
-        <ChatInfoHeader />
+        <ChatInfoHeader chatName={chat.name} />
       </div>
       <div className="flex-1">
-        <ChatMessageHistory />
+        <ChatMessageHistory messages={chat.messages} />
       </div>
       <div className="flex-auto max-h-fit">
         <MessageForm />
