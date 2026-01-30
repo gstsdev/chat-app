@@ -1,4 +1,10 @@
-import { EllipsisVerticalIcon } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { EllipsisVerticalIcon, LogOutIcon, SettingsIcon } from "lucide-react";
 
 export default function ChatSidebar() {
   return (
@@ -9,9 +15,21 @@ export default function ChatSidebar() {
           <h1 className="text-md font-semibold">You</h1>
         </div>
         <div className="ml-auto">
-          <button className="cursor-pointer rounded-full p-2 hover:bg-white/10 transition-colors">
-            <EllipsisVerticalIcon className="size-5" />
-          </button>
+          <DropdownMenu>
+            <DropdownMenuTrigger className="rounded-full p-2 hover:bg-white/10 transition-colors">
+              <EllipsisVerticalIcon className="size-5" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuItem className="text-base">
+                <SettingsIcon className="size-5" />
+                Settings
+              </DropdownMenuItem>
+              <DropdownMenuItem className="text-base">
+                <LogOutIcon className="size-5" />
+                Logout
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
       <div className="bg-white w-full flex-1 rounded-lg shadow-md overflow-hidden">

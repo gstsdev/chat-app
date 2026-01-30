@@ -1,4 +1,10 @@
-import { EllipsisVerticalIcon } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { BanIcon, EllipsisVerticalIcon } from "lucide-react";
 
 export default function ChatInfoHeader() {
   return (
@@ -9,9 +15,18 @@ export default function ChatInfoHeader() {
         <p className="text-xs text-gray-500">Online</p>
       </div>
       <div className="ml-auto">
-        <button className="cursor-pointer rounded-full p-2 hover:bg-black/5 transition-colors">
-          <EllipsisVerticalIcon className="size-5" />
-        </button>
+        <DropdownMenu>
+          <DropdownMenuTrigger className="cursor-pointer rounded-full p-2 hover:bg-black/5 transition-colors">
+            <EllipsisVerticalIcon className="size-5" />
+            <span className="sr-only">More</span>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuItem variant="destructive" className="text-base">
+              <BanIcon className="size-5" />
+              Block
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
     </div>
   );
