@@ -9,6 +9,8 @@ import { cn } from "@/lib/utils";
 export default function ChatPage() {
   const [sidebarActive, setSidebarActive] = useState(false);
 
+  const [activeChat, setActiveChat] = useState<{ id: string } | null>(null);
+
   return (
     <div className="flex flex-col size-full bg-[#fafaff]">
       <div className="m-auto h-full w-full lg:flex max-w-5xl p-4">
@@ -39,7 +41,15 @@ export default function ChatPage() {
             <PanelLeftDashedIcon className="size-6" />
           </button>
 
-          <ChatView />
+          {activeChat ? (
+            <ChatView />
+          ) : (
+            <div className="flex-1 grid items-center">
+              <p className="text-center text-gray-500">
+                Select a chat to start messaging
+              </p>
+            </div>
+          )}
         </main>
       </div>
     </div>
