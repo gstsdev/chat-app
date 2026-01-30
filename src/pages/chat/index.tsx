@@ -3,59 +3,20 @@ import ChatInfoHeader from "./ChatInfoHeader";
 import ChatMessageHistory from "./ChatMessageHistory";
 import ChatSidebar from "./ChatSidebar";
 import MessageForm from "./MessageForm";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { cn } from "@/lib/utils";
 import type { ChatWithMessages } from "@/model/Chat";
-
-const chats: ChatWithMessages[] = [
-  {
-    id: "1",
-    name: "Chat with Alice",
-    profile_image: {
-      type: "color",
-      value: "#ff5733;#33c1ff",
-    },
-    messages: [
-      { id: "m1", sender: "Alice", content: "Hi there!" },
-      { id: "m2", sender: "You", content: "Hello, Alice!" },
-    ],
-  },
-  {
-    id: "2",
-    name: "Project Discussion",
-    profile_image: {
-      type: "color",
-      value: "#33ff57;#ff33a8",
-    },
-    messages: [
-      { id: "m1", sender: "Bob", content: "Did you finish the report?" },
-      { id: "m2", sender: "You", content: "Yes, I sent it this morning." },
-    ],
-  },
-  {
-    id: "3",
-    name: "Random Talk",
-    profile_image: {
-      type: "color",
-      value: "#ff33d4;#3357ff",
-    },
-    messages: [
-      { id: "m1", sender: "Charlie", content: "What's up?" },
-      { id: "m2", sender: "You", content: "Not much, just chilling." },
-    ],
-  },
-];
+import { useChatStore } from "@/stores/chat";
 
 export default function ChatPage() {
   const [sidebarActive, setSidebarActive] = useState(false);
 
   const [activeChatId, setActiveChatId] = useState<string | null>(null);
 
-  const activeChat = useMemo<ChatWithMessages | null>(() => {
-    return (
-      (activeChatId && chats.find((chat) => chat.id === activeChatId)) || null
-    );
-  }, [activeChatId]);
+  const chats = useChatStore((s) => s.chats);
+
+  const activeChat =
+    (activeChatId && chats.find((chat) => chat.id === activeChatId)) || null;
 
   return (
     <div className="flex flex-col size-full bg-[#fafaff]">
