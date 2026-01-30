@@ -4,10 +4,11 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import type { Chat } from "@/model/Chat";
 import { EllipsisVerticalIcon, LogOutIcon, SettingsIcon } from "lucide-react";
 
 interface ChatSidebarProps {
-  chats: { id: string; name: string }[];
+  chats: Chat[];
   onChatSelect?: (chatId: string) => void;
 }
 
@@ -48,6 +49,25 @@ export default function ChatSidebar({ chats, onChatSelect }: ChatSidebarProps) {
                   onClick={() => onChatSelect?.(chat.id)}
                 >
                   <span className="flex items-center gap-4">
+                    {chat.profile_image.type === "color" ? (
+                      <span
+                        className="bg-linear-to-tr from-(--color-stop1) to-(--color-stop2) rounded-full size-10"
+                        style={
+                          {
+                            "--color-stop1":
+                              chat.profile_image.value.split(";")[0],
+                            "--color-stop2":
+                              chat.profile_image.value.split(";")[1],
+                          } as React.CSSProperties
+                        }
+                      ></span>
+                    ) : (
+                      <img
+                        src={chat.profile_image.value}
+                        alt="Profile"
+                        className="rounded-full size-10"
+                      />
+                    )}
                     <span>{chat.name}</span>
                   </span>
                 </a>
