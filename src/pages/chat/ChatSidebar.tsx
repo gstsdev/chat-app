@@ -8,7 +8,7 @@ import { EllipsisVerticalIcon, LogOutIcon, SettingsIcon } from "lucide-react";
 
 export default function ChatSidebar() {
   return (
-    <div className="h-full w-66 flex flex-col mr-4 gap-4 -ml-10">
+    <div className="h-full w-full flex flex-col gap-4">
       <div className="bg-neutral-700 text-white p-2 rounded-lg flex items-center gap-4">
         <div className="bg-linear-to-tr from-red-400 to-blue-600 rounded-full size-10"></div>
         <div>
