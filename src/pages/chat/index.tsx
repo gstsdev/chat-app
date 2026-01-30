@@ -19,7 +19,7 @@ export default function ChatPage() {
             "max-lg:absolute max-lg:inset-x-0 max-lg:top-16 max-lg:bottom-0",
             "max-lg:bg-gray-50",
             !sidebarActive && "max-lg:hidden",
-            "lg:w-72 lg:-ml-10 lg:mr-4",
+            "lg:w-88 lg:-ml-10 lg:mr-4",
           )}
         >
           <ChatSidebar />
