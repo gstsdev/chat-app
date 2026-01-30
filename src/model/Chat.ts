@@ -12,8 +12,11 @@ export interface Chat {
   id: string;
   name: string;
   profile_image: ChatProfileImage;
-  messages: ChatMessage[];
 }
+
+export type ChatWithMessages = Chat & {
+  messages: ChatMessage[];
+};
 
 export interface ChatMessage {
   id: string;

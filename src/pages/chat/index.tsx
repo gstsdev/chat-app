@@ -5,9 +5,9 @@ import ChatSidebar from "./ChatSidebar";
 import MessageForm from "./MessageForm";
 import { useMemo, useState } from "react";
 import { cn } from "@/lib/utils";
-import type { Chat } from "@/model/Chat";
+import type { ChatWithMessages } from "@/model/Chat";
 
-const chats: Chat[] = [
+const chats: ChatWithMessages[] = [
   {
     id: "1",
     name: "Chat with Alice",
@@ -51,7 +51,7 @@ export default function ChatPage() {
 
   const [activeChatId, setActiveChatId] = useState<string | null>(null);
 
-  const activeChat = useMemo<Chat | null>(() => {
+  const activeChat = useMemo<ChatWithMessages | null>(() => {
     return (
       (activeChatId && chats.find((chat) => chat.id === activeChatId)) || null
     );
@@ -108,7 +108,7 @@ export default function ChatPage() {
   );
 }
 
-function ChatView({ chat }: { chat: Chat }) {
+function ChatView({ chat }: { chat: ChatWithMessages }) {
   return (
     <div className="flex-1 flex flex-col gap-2">
       <div className="w-full flex mb-2">

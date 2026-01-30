@@ -47,7 +47,9 @@ export default function ChatSidebar({ chats, onChatSelect }: ChatSidebarProps) {
                   className="block p-4 border-b border-gray-200 hover:bg-gray-100"
                   onClick={() => onChatSelect?.(chat.id)}
                 >
-                  {chat.name}
+                  <span className="flex items-center gap-4">
+                    <span>{chat.name}</span>
+                  </span>
                 </a>
               </li>
             ))}
