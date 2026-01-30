@@ -4,7 +4,7 @@ import ChatMessageHistory from "./ChatMessageHistory";
 import ChatSidebar from "./ChatSidebar";
 import MessageForm from "./MessageForm";
 import { useState } from "react";
-import { cn } from "../../utils";
+import { cn } from "@/lib/utils";
 
 export default function ChatPage() {
   const [sidebarActive, setSidebarActive] = useState(false);
