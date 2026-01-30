@@ -9,7 +9,7 @@ import type { ChatWithMessages } from "@/model/Chat";
 import { useChatStore } from "@/stores/chat";
 
 export default function ChatPage() {
-  const [sidebarActive, setSidebarActive] = useState(false);
+  const [sidebarActive, setSidebarActive] = useState(true);
 
   const [activeChatId, setActiveChatId] = useState<string | null>(null);
 
