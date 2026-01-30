@@ -70,6 +70,8 @@ export default function ChatPage() {
 }
 
 function ChatView({ chat }: { chat: ChatWithMessages }) {
+  const addMessage = useChatStore((s) => s.addMessage);
+
   return (
     <div className="flex-1 flex flex-col gap-2">
       <div className="w-full flex mb-2">
@@ -82,7 +84,11 @@ function ChatView({ chat }: { chat: ChatWithMessages }) {
         <ChatMessageHistory messages={chat.messages} />
       </div>
       <div className="flex-auto max-h-fit">
-        <MessageForm />
+        <MessageForm
+          onMessageSend={(message) =>
+            addMessage(chat.id, { content: message, sender: "You" })
+          }
+        />
       </div>
     </div>
   );
