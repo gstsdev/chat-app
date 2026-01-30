@@ -72,7 +72,10 @@ export default function ChatPage() {
         >
           <ChatSidebar
             chats={chats}
-            onChatSelect={(chatId) => setActiveChatId(chatId)}
+            onChatSelect={(chatId) => {
+              setActiveChatId(chatId);
+              setSidebarActive(false);
+            }}
           />
         </aside>
         <main className="flex flex-col size-full">
