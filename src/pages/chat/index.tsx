@@ -11,6 +11,10 @@ const chats: Chat[] = [
   {
     id: "1",
     name: "Chat with Alice",
+    profile_image: {
+      type: "color",
+      value: "#ff5733;#33c1ff",
+    },
     messages: [
       { id: "m1", sender: "Alice", content: "Hi there!" },
       { id: "m2", sender: "You", content: "Hello, Alice!" },
@@ -19,6 +23,10 @@ const chats: Chat[] = [
   {
     id: "2",
     name: "Project Discussion",
+    profile_image: {
+      type: "color",
+      value: "#33ff57;#ff33a8",
+    },
     messages: [
       { id: "m1", sender: "Bob", content: "Did you finish the report?" },
       { id: "m2", sender: "You", content: "Yes, I sent it this morning." },
@@ -27,6 +35,10 @@ const chats: Chat[] = [
   {
     id: "3",
     name: "Random Talk",
+    profile_image: {
+      type: "color",
+      value: "#ff33d4;#3357ff",
+    },
     messages: [
       { id: "m1", sender: "Charlie", content: "What's up?" },
       { id: "m2", sender: "You", content: "Not much, just chilling." },
@@ -97,7 +109,10 @@ function ChatView({ chat }: { chat: Chat }) {
   return (
     <div className="flex-1 flex flex-col gap-2">
       <div className="w-full flex mb-2">
-        <ChatInfoHeader chatName={chat.name} />
+        <ChatInfoHeader
+          profileImage={chat.profile_image}
+          chatName={chat.name}
+        />
       </div>
       <div className="flex-1">
         <ChatMessageHistory messages={chat.messages} />

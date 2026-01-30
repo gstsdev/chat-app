@@ -4,16 +4,39 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import type { ChatProfileImage } from "@/model/Chat";
 import { BanIcon, EllipsisVerticalIcon } from "lucide-react";
 
 interface ChatInfoHeaderProps {
+  profileImage?: ChatProfileImage;
   chatName: string;
 }
 
-export default function ChatInfoHeader({ chatName }: ChatInfoHeaderProps) {
+export default function ChatInfoHeader({
+  profileImage,
+  chatName,
+}: ChatInfoHeaderProps) {
   return (
     <div className="flex items-center gap-4 p-2 w-full">
-      <div className="bg-linear-to-tr from-yellow-200 to-lime-500 rounded-full size-10"></div>
+      {profileImage?.type === "color" ? (
+        <div
+          className="bg-linear-to-tr from-(--color-stop1) to-(--color-stop2) rounded-full size-10"
+          style={
+            {
+              "--color-stop1": profileImage.value.split(";")[0],
+              "--color-stop2": profileImage.value.split(";")[1],
+            } as React.CSSProperties
+          }
+        ></div>
+      ) : profileImage?.type === "url" ? (
+        <img
+          src={profileImage.value}
+          alt={chatName}
+          className="rounded-full size-10 object-cover"
+        />
+      ) : (
+        <div className="bg-gray-300 rounded-full size-10"></div>
+      )}
       <div>
         <h1 className="font-semibold text-md">{chatName}</h1>
         <p className="text-xs text-gray-500">Online</p>
