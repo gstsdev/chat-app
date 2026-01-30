@@ -9,7 +9,13 @@ import { cn } from "@/lib/utils";
 export default function ChatPage() {
   const [sidebarActive, setSidebarActive] = useState(false);
 
-  const [activeChat, setActiveChat] = useState<{ id: string } | null>(null);
+  const [activeChatId, setActiveChatId] = useState<string | null>(null);
+
+  const chats = [
+    { id: "1", name: "Chat with Alice" },
+    { id: "2", name: "Project Discussion" },
+    { id: "3", name: "Random Talk" },
+  ];
 
   return (
     <div className="flex flex-col size-full bg-[#fafaff]">
@@ -24,7 +30,10 @@ export default function ChatPage() {
             "lg:w-88 lg:-ml-10 lg:mr-4",
           )}
         >
-          <ChatSidebar />
+          <ChatSidebar
+            chats={chats}
+            onChatSelect={(chatId) => setActiveChatId(chatId)}
+          />
         </aside>
         <main className="flex flex-col size-full">
           <button
@@ -41,7 +50,7 @@ export default function ChatPage() {
             <PanelLeftDashedIcon className="size-6" />
           </button>
 
-          {activeChat ? (
+          {activeChatId ? (
             <ChatView />
           ) : (
             <div className="flex-1 grid items-center">

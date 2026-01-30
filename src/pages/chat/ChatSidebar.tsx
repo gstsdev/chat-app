@@ -6,7 +6,12 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { EllipsisVerticalIcon, LogOutIcon, SettingsIcon } from "lucide-react";
 
-export default function ChatSidebar() {
+interface ChatSidebarProps {
+  chats: { id: string; name: string }[];
+  onChatSelect?: (chatId: string) => void;
+}
+
+export default function ChatSidebar({ chats, onChatSelect }: ChatSidebarProps) {
   return (
     <div className="h-full w-full flex flex-col gap-4">
       <div className="bg-neutral-700 text-white p-2 rounded-lg flex items-center gap-4">
@@ -35,22 +40,17 @@ export default function ChatSidebar() {
       <div className="bg-white w-full flex-1 rounded-lg shadow-md overflow-hidden">
         <nav>
           <ul>
-            <li>
-              <a
-                href="#"
-                className="block p-4 border-b border-gray-200 hover:bg-gray-100"
-              >
-                Chat 1
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="block p-4 border-b border-gray-200 hover:bg-gray-100"
-              >
-                Chat 2
-              </a>
-            </li>
+            {chats.map((chat) => (
+              <li key={chat.id}>
+                <a
+                  href="#"
+                  className="block p-4 border-b border-gray-200 hover:bg-gray-100"
+                  onClick={() => onChatSelect?.(chat.id)}
+                >
+                  {chat.name}
+                </a>
+              </li>
+            ))}
           </ul>
         </nav>
       </div>
